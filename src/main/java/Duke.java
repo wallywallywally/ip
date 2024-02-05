@@ -69,6 +69,7 @@ public class Duke {
     public static boolean checkMarkUnmarkDone(String input) {
         String[] words = input.split(" ");
 
+        // ! EXCEPTION HANDLING -> done later
         // Check that it is "mark [int]"
         if (words.length == 2) {
             if (isNumeric(words[1])) {
