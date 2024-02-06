@@ -4,13 +4,23 @@ public class Duke {
     // LEVEL-0
     // Initialise chatbot
     public static void initWally() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
+        String logo =
+            " __       __          __ __          __                  __     \n" +
+            "|  \\  _  |  \\        |  \\  \\        |  \\                |  \\    \n" +
+            "| ▓▓ / \\ | ▓▓ ______ | ▓▓ ▓▓__    __| ▓▓____   ______  _| ▓▓_   \n" +
+            "| ▓▓/  ▓\\| ▓▓|      \\| ▓▓ ▓▓  \\  |  \\ ▓▓    \\ /      \\|   ▓▓ \\  \n" +
+            "| ▓▓  ▓▓▓\\ ▓▓ \\▓▓▓▓▓▓\\ ▓▓ ▓▓ ▓▓  | ▓▓ ▓▓▓▓▓▓▓\\  ▓▓▓▓▓▓\\\\▓▓▓▓▓▓  \n" +
+            "| ▓▓ ▓▓\\▓▓\\▓▓/      ▓▓ ▓▓ ▓▓ ▓▓  | ▓▓ ▓▓  | ▓▓ ▓▓  | ▓▓ | ▓▓ __ \n" +
+            "| ▓▓▓▓  \\▓▓▓▓  ▓▓▓▓▓▓▓ ▓▓ ▓▓ ▓▓__/ ▓▓ ▓▓__/ ▓▓ ▓▓__/ ▓▓ | ▓▓|  \\\n" +
+            "| ▓▓▓    \\▓▓▓\\▓▓    ▓▓ ▓▓ ▓▓\\▓▓    ▓▓ ▓▓    ▓▓\\▓▓    ▓▓  \\▓▓  ▓▓\n" +
+            " \\▓▓      \\▓▓ \\▓▓▓▓▓▓▓\\▓▓\\▓▓_\\▓▓▓▓▓▓▓\\▓▓▓▓▓▓▓  \\▓▓▓▓▓▓    \\▓▓▓▓ \n" +
+            "                           |  \\__| ▓▓                           \n" +
+            "                            \\▓▓    ▓▓                           \n" +
+            "                             \\▓▓▓▓▓▓                            \n"
+        ;
         String chatbotName = "Wallybot";
 
+        System.out.println(logo);
         System.out.println("Beep boop. Hello! I'm " + chatbotName + "!");
         System.out.println("What can I do for you today?");
 
@@ -26,71 +36,6 @@ public class Duke {
         System.out.println(input);
     }
 
-    // LEVEL-2
-    // Initialise task list
-    private static final Task[] taskList = new Task[100];
-    private static int taskCount = 0;
-
-    public static void addTask(String input) {
-        // Handle no input
-        if (input.isBlank()) {
-            System.out.println("Oops, nothing detected...try again!");
-            return;
-        }
-
-        Task task = new Task(input);
-        taskList[taskCount] = task;
-        taskCount++;
-        System.out.println("Nice! Added: " + task.description);
-    }
-
-    public static void viewTasks() {
-        System.out.println("Here are your tasks:");
-        for (int i = 0; i < taskCount; i++) {
-            Task task = taskList[i];
-            System.out.println(
-                    i+1 + ".[" + task.getStatusIcon() + "] " + task.description
-            );
-        }
-    }
-
-    // LEVEL-3
-    // Probably over-engineered...
-    public static boolean isNumeric(String str) {
-        try {
-            int intTest = Integer.parseInt(str);
-        } catch (NumberFormatException error) {
-            return false;
-        }
-
-        return true;
-    }
-
-    public static boolean checkMarkUnmarkDone(String input) {
-        String[] words = input.split(" ");
-
-        // ! EXCEPTION HANDLING -> done later
-        // Check that it is "mark [int]"
-        if (words.length == 2) {
-            if (isNumeric(words[1])) {
-                int taskIndex = Integer.parseInt(words[1]) - 1;
-                if (taskIndex + 1 <= taskCount) {
-                    if (words[0].equals("mark")) {
-                        Task task = taskList[taskIndex];
-                        task.markDone();
-                        return true;
-                    } else if (words[0].equals("unmark")) {
-                        Task task = taskList[taskIndex];
-                        task.unmarkDone();
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
-
 
     // MAIN
     public static void main(String[] args) {
@@ -101,28 +46,69 @@ public class Duke {
 
         // Run Scanner continuously
         scan: while (true) {
-            // Read input
-            String input;
-            input = in.nextLine().strip();
+            // Read command and input
+            String command = in.next();
+            String input = in.nextLine().strip();
 
             // Mark done
-            boolean continueLoop = checkMarkUnmarkDone(input);
-            if (continueLoop) {
-                continue;
-            }
+//            boolean breakLoop = Tasklist.checkMarkUnmarkDone(input);
+//            if (breakLoop) {
+//                continue;
+//            }
 
-            switch (input) {
+            switch (command) {
+            case "todo":
+                // Add Todo
+                Task todo = new Todo(input);
+                Tasklist.addTask(todo);
+                break;
+
+            case "deadline":
+                // Add Deadline
+                int byIndex = input.indexOf("/by");
+                String todoDescription = input.substring(0, byIndex).strip();
+                String by = input.substring(byIndex + 4).strip();
+
+                Task deadline = new Deadline(todoDescription, by);
+                Tasklist.addTask(deadline);
+                break;
+
+            case "event":
+                // Add Event
+                int fromIndex = input.indexOf("/from");
+                int toIndex = input.indexOf("/to");
+                String eventDescription = input.substring(0, fromIndex).strip();
+                String from = input.substring(fromIndex + 6, toIndex).strip();
+                String to = input.substring(toIndex + 4).strip();
+
+                Task event = new Event(eventDescription, from, to);
+                Tasklist.addTask(event);
+                break;
+
+            case "list":
+                // View tasks
+                Tasklist.viewTasks();
+                break;
+
+            // Newly implement without exception handling yet
+            case "mark":
+                Tasklist.markDone(Integer.parseInt(input) - 1);
+                break;
+
+            case "unmark":
+                Tasklist.unmarkDone(Integer.parseInt(input) - 1);
+                break;
+
             case "bye":
                 // Exit chatbot
                 exitWally();
                 break scan;
-            case "list":
-                // View tasks
-                viewTasks();
-                break;
+
             default:
-                // Add task to list
-                addTask(input);
+                // Echo
+                System.out.print("Did not understand: ");
+                echo(command + " " + input);
+                System.out.println("Please try again!");
             }
         }
     }

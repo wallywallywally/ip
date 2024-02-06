@@ -14,15 +14,20 @@ public class Task {
         return (isDone ? "X" : " ");
     }
 
+    public String toString() {
+        return "[" + getStatusIcon() + "] " + description;
+    }
+
+    // Mark/unmark done
     public void markDone() {
         isDone = true;
         System.out.println("Yay, task done!");
-        System.out.println("[" + getStatusIcon() + "] " + description);
+        System.out.println(this);
     }
 
     public void unmarkDone() {
         isDone = false;
         System.out.println("Oh no, task not done...");
-        System.out.println("[" + getStatusIcon() + "] " + description);
+        System.out.println(this);
     }
 }
