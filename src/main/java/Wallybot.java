@@ -1,8 +1,13 @@
 import java.util.Scanner;
 
-public class Duke {
-    // LEVEL-0
-    // Initialise chatbot
+/**
+ * Wallybot is a personal assistant chatbot.
+ * It keeps track of your tasks and allows you to manage them.
+ */
+public class Wallybot {
+    /**
+     * Initialise chatbot
+     */
     public static void initWally() {
         String logo =
             " __       __          __ __          __                  __     \n" +
@@ -26,36 +31,64 @@ public class Duke {
 
     }
 
-    // Exit chatbot
+    /**
+     * Exit Wallybot
+     */
     public static void exitWally() {
-        System.out.println("Womp womp. Goodbye and see you soon!");
+        System.out.println("Productive day today! Shutting down...");
     }
 
-    // LEVEL-1: Echo
+    /**
+     * Echo user input
+     */
     public static void echo(String input) {
         System.out.println(input);
     }
 
+    /**
+     * Create Deadline object
+     *
+     * @param input: Deadline details
+     */
+    public static Deadline createDeadline(String input) {
+        int byIndex = input.indexOf("/by");
+        int byLength = "/by".length();
 
-    // MAIN
+        String todoDescription = input.substring(0, byIndex).strip();
+        String by = input.substring(byIndex + byLength).strip();
+
+        return new Deadline(todoDescription, by);
+    }
+
+    /**
+     * Create Event object
+     *
+     * @param input: Event details
+     */
+    public static Event createEvent(String input) {
+        int fromIndex = input.indexOf("/from");
+        int toIndex = input.indexOf("/to");
+        int fromLength = "/from".length();
+        int toLength = "/to".length();
+
+        String eventDescription = input.substring(0, fromIndex).strip();
+        String from = input.substring(fromIndex + fromLength, toIndex).strip();
+        String to = input.substring(toIndex + toLength).strip();
+
+        return new Event(eventDescription, from, to);
+    }
+
     public static void main(String[] args) {
         // Initialise chatbot
         initWally();
-        // Initialise Scanner
         Scanner in = new Scanner(System.in);
 
-        // Run Scanner continuously
+        // Read user input continuously
         scan: while (true) {
-            // Read command and input
             String command = in.next();
             String input = in.nextLine().strip();
 
-            // Mark done
-//            boolean breakLoop = Tasklist.checkMarkUnmarkDone(input);
-//            if (breakLoop) {
-//                continue;
-//            }
-
+            // Execute task given command
             switch (command) {
             case "todo":
                 // Add Todo
@@ -65,38 +98,30 @@ public class Duke {
 
             case "deadline":
                 // Add Deadline
-                int byIndex = input.indexOf("/by");
-                String todoDescription = input.substring(0, byIndex).strip();
-                String by = input.substring(byIndex + 4).strip();
-
-                Task deadline = new Deadline(todoDescription, by);
+                Task deadline = createDeadline(input);
                 Tasklist.addTask(deadline);
                 break;
 
             case "event":
                 // Add Event
-                int fromIndex = input.indexOf("/from");
-                int toIndex = input.indexOf("/to");
-                String eventDescription = input.substring(0, fromIndex).strip();
-                String from = input.substring(fromIndex + 6, toIndex).strip();
-                String to = input.substring(toIndex + 4).strip();
-
-                Task event = new Event(eventDescription, from, to);
+                Task event = createEvent(input);
                 Tasklist.addTask(event);
                 break;
 
             case "list":
-                // View tasks
+                // View all tasks
                 Tasklist.viewTasks();
                 break;
 
-            // Newly implement without exception handling yet
+            // TODO: exception handling
             case "mark":
-                Tasklist.markDone(Integer.parseInt(input) - 1);
+                // Mark task as completed
+                Tasklist.markDone(Integer.parseInt(input));
                 break;
 
             case "unmark":
-                Tasklist.unmarkDone(Integer.parseInt(input) - 1);
+                // Unmark completed task
+                Tasklist.unmarkDone(Integer.parseInt(input));
                 break;
 
             case "bye":
@@ -105,7 +130,7 @@ public class Duke {
                 break scan;
 
             default:
-                // Echo
+                // Echo input when no appropriate command is given
                 System.out.print("Did not understand: ");
                 echo(command + " " + input);
                 System.out.println("Please try again!");

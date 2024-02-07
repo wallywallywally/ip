@@ -1,4 +1,7 @@
-// LEVEL-3
+/**
+ * Task class
+ * Stores information on task.
+ */
 public class Task {
     // ATTRIBUTES
     protected String description;
@@ -10,24 +13,30 @@ public class Task {
         this.isDone = false;
     }
 
-    public String getStatusIcon() {
+    protected String getStatusIcon() {
         return (isDone ? "X" : " ");
     }
 
+    /**
+     * Return status and description of task
+     */
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
     }
 
-    // Mark/unmark done
+    /**
+     * Mark task
+     */
     public void markDone() {
         isDone = true;
-        System.out.println("Yay, task done!");
-        System.out.println(this);
+        System.out.println("Yay, task done!" + System.lineSeparator() + this);
     }
 
+    /**
+     * Unmark task
+     */
     public void unmarkDone() {
         isDone = false;
-        System.out.println("Oh no, task not done...");
-        System.out.println(this);
+        System.out.println("Oh no, task not done..." + System.lineSeparator() + this);
     }
 }
