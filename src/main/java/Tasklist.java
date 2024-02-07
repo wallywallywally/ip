@@ -1,9 +1,17 @@
+/**
+ * Tasklist class
+ * Store and manage tasks.
+ */
 public class Tasklist {
     // ATTRIBUTES
     private static Task[] tasks = new Task[100];
     private static int taskCount = 0;
 
     // METHODS
+
+    /**
+     * Add a new task
+     */
     public static void addTask(Task task) {
         tasks[taskCount] = task;
         taskCount++;
@@ -15,6 +23,9 @@ public class Tasklist {
             + " in the list!");
     }
 
+    /**
+     * View all tasks
+     */
     public static void viewTasks() {
         System.out.println("Let's take a look at all your tasks...");
         for (int i = 0; i < taskCount; i++) {
@@ -27,50 +38,24 @@ public class Tasklist {
     }
 
     /**
-     * ! EXCEPTION HANDLING
-     * done later, should fix this over-engineered code
-    */
-    public static boolean isNumeric(String str) {
-        try {
-            Integer.parseInt(str);
-        } catch (NumberFormatException error) {
-            return false;
-        }
-
-        return true;
-    }
-
-    public static boolean checkMarkUnmarkDone(String input) {
-        String[] words = input.split(" ");
-
-        // ! EXCEPTION HANDLING -> done later
-        // Check that it is "mark [int]"
-        if (words.length == 2) {
-            if (isNumeric(words[1])) {
-                int taskIndex = Integer.parseInt(words[1]) - 1;
-                if (taskIndex + 1 <= taskCount) {
-                    if (words[0].equals("mark")) {
-                        Task task = tasks[taskIndex];
-                        task.markDone();
-                        return true;
-                    } else if (words[0].equals("unmark")) {
-                        Task task = tasks[taskIndex];
-                        task.unmarkDone();
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
+     * Mark selected task
+     *
+     * @param index: Index of task
+     */
     public static void markDone(int index) {
-        Task task = tasks[index];
+        int actualIndex = index - 1;
+        Task task = tasks[actualIndex];
         task.markDone();
     }
 
+    /**
+     * Unmark selected task
+     *
+     * @param index: Index of task
+     */
     public static void unmarkDone(int index) {
-        Task task = tasks[index];
+        int actualIndex = index - 1;
+        Task task = tasks[actualIndex];
         task.unmarkDone();
     }
 

@@ -1,3 +1,7 @@
+/**
+ * Deadline class
+ * Task that has a do-by time.
+ */
 public class Deadline extends Task {
     // ATTRIBUTES
     protected String by;

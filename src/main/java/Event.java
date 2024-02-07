@@ -1,3 +1,7 @@
+/**
+ * Event class
+ * Task that has start and end times.
+ */
 public class Event extends Task {
     // ATTRIBUTES
     protected String from;
