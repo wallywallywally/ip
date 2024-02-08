@@ -16,7 +16,7 @@ public class Task {
     protected String getStatusIcon() {
         return (isDone ? "X" : " ");
     }
-
+    
     /**
      * Return status and description of task
      */
