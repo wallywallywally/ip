@@ -29,7 +29,8 @@ public class Task {
      */
     public void markDone() {
         isDone = true;
-        System.out.println("Yay, task done!" + System.lineSeparator() + this);
+        System.out.println("Yay, task done!");
+        System.out.println(this);
     }
 
     /**
@@ -37,6 +38,7 @@ public class Task {
      */
     public void unmarkDone() {
         isDone = false;
-        System.out.println("Oh no, task not done..." + System.lineSeparator() + this);
+        System.out.println("Oh no, task not done...");
+        System.out.println(this);
     }
 }
