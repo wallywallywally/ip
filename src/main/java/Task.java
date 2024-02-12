@@ -2,7 +2,7 @@
  * Task class
  * Stores information on task.
  */
-public class Task {
+public abstract class Task {
     // ATTRIBUTES
     protected String description;
     protected boolean isDone;
