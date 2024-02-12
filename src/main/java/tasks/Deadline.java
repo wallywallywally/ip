@@ -1,3 +1,5 @@
+import exceptions.InvalidCommandException;
+
 /**
  * Deadline class
  * Task that has a do-by time.
