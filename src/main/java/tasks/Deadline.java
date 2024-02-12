@@ -1,4 +1,4 @@
-import exceptions.InvalidCommandException;
+package tasks;
 
 /**
  * Deadline class

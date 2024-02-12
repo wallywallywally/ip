@@ -1,3 +1,5 @@
+package tasks;
+
 /**
  * Event class
  * Task that has start and end times.

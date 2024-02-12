@@ -1,5 +1,7 @@
+package tasks;
+
 /**
- * Task class
+ * Task abstract class
  * Stores information on task.
  */
 public abstract class Task {
