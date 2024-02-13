@@ -1,21 +1,25 @@
 import java.util.Scanner;
 import java.util.Arrays;
 
-// Import tasks
+// Import Task class
 import tasks.Task;
-import tasks.Todo;
-import tasks.Deadline;
-import tasks.Event;
 
 // Import custom exceptions
-import exceptions.InvalidDescriptionException;
 import exceptions.InvalidCommandException;
+// Description exceptions
+import exceptions.descriptions.EmptyDescriptionException;
+import exceptions.descriptions.WrongFormatDescriptionException;
+import exceptions.descriptions.IncompleteDescriptionException;
+
 
 /**
  * Wallybot is a personal assistant chatbot.
  * It keeps track of your tasks and allows you to manage them.
  */
 public class Wallybot {
+    // Divider to format text for better user readability
+    private static final String DIVIDER = "- - - - - - - - - - - - -";
+
     /**
      * Initialise chatbot
      */
@@ -37,18 +41,16 @@ public class Wallybot {
         String chatbotName = "Wallybot";
 
         System.out.println(logo);
-        System.out.println("Beep boop. Hello! I'm " + chatbotName + "!");
+        System.out.println("Beep boop. Hello! I'm " + chatbotName + "! :P");
         System.out.println("What can I do for you today?");
-        // TODO: Type a command to show all commands
-        System.out.println("Here are all my valid commands:");
-        System.out.println(Arrays.toString(validCommands));
+        System.out.println(DIVIDER);
     }
 
     /**
      * Exit Wallybot
      */
     public static void exitWally() {
-        System.out.println("Productive day today! Shutting down...");
+        System.out.println("Productive day today! :D Shutting down...");
     }
 
     /**
@@ -61,82 +63,15 @@ public class Wallybot {
     /**
      * Check if user command is valid, else throw exception
      */
-    private static String[] validCommands = {"bye", "todo", "deadline", "event", "list", "mark", "unmark"};
+    private static final String[] COMMANDS = {"bye", "todo", "deadline", "event", "list", "mark", "unmark"};
     public static void checkValidCommand(String command) throws InvalidCommandException {
-        if (!Arrays.asList(validCommands).contains(command)) {
+        if (!Arrays.asList(COMMANDS).contains(command)) {
             throw new InvalidCommandException();
         }
     }
 
-    // TODO: move these to each class ?
-    // TODO: specific exceptions i.e. empty, lacking keyword, etc. + how to solve them
-    /**
-     * Create tasks.Todo object
-     *
-     * @param input: tasks.Todo details
-     */
-    public static Todo createTodo(String input) throws InvalidDescriptionException {
-        // Check if input is empty
-        if (input.isEmpty()) {
-            throw new InvalidDescriptionException();
-        }
 
-        return new Todo(input);
-    }
-
-    /**
-     * Create tasks.Deadline object
-     *
-     * @param input: tasks.Deadline details
-     */
-    public static Deadline createDeadline(String input) throws InvalidDescriptionException {
-        // Check if input is empty or wrong format
-        if (input.isEmpty() | !input.contains("/by")) {
-            throw new InvalidDescriptionException();
-        }
-
-        int byIndex = input.indexOf("/by");
-        int byLength = "/by".length();
-        String description = input.substring(0, byIndex).strip();
-        String by = input.substring(byIndex + byLength).strip();
-
-        // Check if "by" is empty
-        if (by.isEmpty()) {
-            throw new InvalidDescriptionException();
-        }
-
-        return new Deadline(description, by);
-    }
-
-    /**
-     * Create tasks.Event object
-     *
-     * @param input: tasks.Event details
-     */
-    public static Event createEvent(String input) throws InvalidDescriptionException {
-        // Check if input is empty or wrong format
-        if (input.isEmpty() | !input.contains("/from") | !input.contains("/to")) {
-            throw new InvalidDescriptionException();
-        }
-
-        int fromIndex = input.indexOf("/from");
-        int toIndex = input.indexOf("/to");
-        int fromLength = "/from".length();
-        int toLength = "/to".length();
-        String description = input.substring(0, fromIndex).strip();
-        String from = input.substring(fromIndex + fromLength, toIndex).strip();
-        String to = input.substring(toIndex + toLength).strip();
-
-        // Check if "from"/"to" is empty
-        if (from.isEmpty() | to.isEmpty()) {
-            throw new InvalidDescriptionException();
-        }
-
-        return new Event(description, from, to);
-    }
-
-
-    /* MAIN */
+    /*  MAIN  */
     public static void main(String[] args) {
         // Initialise chatbot
         initWally();
@@ -151,7 +86,9 @@ public class Wallybot {
             try {
                 checkValidCommand(command);
             } catch (InvalidCommandException e) {
-                System.out.println("Uh oh! I'm not sure what to do :\\");
+                // Show valid commands
+                System.out.println("Need some help? Here are all my valid commands:");
+                System.out.println(Arrays.toString(COMMANDS));
                 continue;       // Break current iteration
             }
 
@@ -160,19 +97,19 @@ public class Wallybot {
                 switch (command) {
                 case "todo":
                     // Add tasks.Todo
-                    Task todo = createTodo(input);
+                    Task todo = Tasklist.createTodo(input);
                     Tasklist.addTask(todo);
                     break;
 
                 case "deadline":
                     // Add tasks.Deadline
-                    Task deadline = createDeadline(input);
+                    Task deadline = Tasklist.createDeadline(input);
                     Tasklist.addTask(deadline);
                     break;
 
                 case "event":
                     // Add tasks.Event
-                    Task event = createEvent(input);
+                    Task event = Tasklist.createEvent(input);
                     Tasklist.addTask(event);
                     break;
 
@@ -181,7 +118,6 @@ public class Wallybot {
                     Tasklist.viewTasks();
                     break;
 
-                // TODO: exception handling
                 case "mark":
                     // Mark task as completed
                     Tasklist.markDone(Integer.parseInt(input));
@@ -198,10 +134,32 @@ public class Wallybot {
                     break scan;
                 }
 
-            } catch (InvalidDescriptionException e) {
+            // Handle description exceptions
+            } catch (EmptyDescriptionException e) {
                 System.out.println("Whoopsies, the description for a task cannot be empty :|");
+
+            } catch (WrongFormatDescriptionException e) {
+                System.out.println("Hmm...seems that your description is in the wrong format :O");
+                String type = e.getType();
+                if (type.equals("Deadline")) {
+                    System.out.println("A Deadline needs '/by'");
+                } else if (type.equals("Event")) {
+                    System.out.println("An Event needs '/from' and '/to'");
+                }
+
+            } catch (IncompleteDescriptionException e) {
+                System.out.println("Oops, the description is incomplete :O");
+
+            // Handle mark/unmark exceptions
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Oopsies, that number does not correspond to a task in your list :O");
+
+            } catch (NumberFormatException e) {
+                System.out.println("Shucks...that's not a number :O");
             }
 
+            // Format text using divider
+            System.out.println(DIVIDER);
         }
 
     }
