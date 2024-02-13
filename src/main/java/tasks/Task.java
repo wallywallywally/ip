@@ -1,8 +1,10 @@
+package tasks;
+
 /**
- * Task class
+ * Task abstract class
  * Stores information on task.
  */
-public class Task {
+public abstract class Task {
     // ATTRIBUTES
     protected String description;
     protected boolean isDone;
@@ -41,4 +43,8 @@ public class Task {
         System.out.println("Oh no, task not done...");
         System.out.println(this);
     }
+
+    // Todo: exception handling
+    // 1. description cannot be empty
+    // 2. index must be in bound
 }

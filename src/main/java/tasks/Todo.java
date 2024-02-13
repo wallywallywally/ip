@@ -1,3 +1,5 @@
+package tasks;
+
 /**
  * Todo class
  * Normal task.
