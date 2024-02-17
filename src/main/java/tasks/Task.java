@@ -43,8 +43,4 @@ public abstract class Task {
         System.out.println("Oh no, task not done...");
         System.out.println(this);
     }
-
-    // Todo: exception handling
-    // 1. description cannot be empty
-    // 2. index must be in bound
 }

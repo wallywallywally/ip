@@ -60,16 +60,6 @@ public class Wallybot {
         System.out.println(input);
     }
 
-    /**
-     * Check if user command is valid, else throw exception
-     */
-    private static final String[] COMMANDS = {"bye", "todo", "deadline", "event", "list", "mark", "unmark"};
-    public static void checkValidCommand(String command) throws InvalidCommandException {
-        if (!Arrays.asList(COMMANDS).contains(command)) {
-            throw new InvalidCommandException();
-        }
-    }
-
 
     /*  MAIN  */
     public static void main(String[] args) {
@@ -81,16 +71,6 @@ public class Wallybot {
         scan: while (true) {
             String command = in.next().toLowerCase();
             String input = in.nextLine().strip();
-
-            // Check if user command is valid
-            try {
-                checkValidCommand(command);
-            } catch (InvalidCommandException e) {
-                // Show valid commands
-                System.out.println("Need some help? Here are all my valid commands:");
-                System.out.println(Arrays.toString(COMMANDS));
-                continue;       // Break current iteration
-            }
 
             try {
                 // Execute task given command
@@ -132,7 +112,19 @@ public class Wallybot {
                     // Exit chatbot
                     exitWally();
                     break scan;
+
+                default:
+                    // Invalid command
+                    throw new InvalidCommandException();
+
                 }
+
+            // Handle invalid command
+            } catch (InvalidCommandException e) {
+                // Show valid commands
+                System.out.println("Need some help? Here are all my valid commands:");
+                String[] commands = {"bye", "todo", "deadline", "event", "list", "mark", "unmark"};
+                System.out.println(Arrays.toString(commands));
 
             // Handle description exceptions
             } catch (EmptyDescriptionException e) {
