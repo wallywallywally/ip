@@ -1,4 +1,3 @@
-import java.rmi.NotBoundException;
 import java.util.ArrayList;
 
 // Import Task class and subclasses
@@ -98,7 +97,25 @@ public class Tasklist {
     public static void addTask(Task task) {
         tasks.add(task);
         System.out.println("Nice! A new task has been added:");
-        System.out.println(task.toString());
+        System.out.println(task);
+        int taskCount = tasks.size();
+        System.out.println(
+            "You now have " + taskCount +
+            (taskCount == 1 ? " task" : " tasks")
+        );
+    }
+
+    /**
+     * Delete a task
+     *
+     * @param index: Index of task
+     */
+    public static void deleteTask(int index) {
+        int actualIndex = index - 1;            // Throw NumberFormatException
+        Task task = tasks.get(actualIndex);     // Throw ArrayIndexOutOfBoundsException
+        tasks.remove(actualIndex);
+        System.out.println("Brrrppp...deleting task:");
+        System.out.println(task);
         int taskCount = tasks.size();
         System.out.println(
             "You now have " + taskCount +
@@ -112,11 +129,11 @@ public class Tasklist {
     public static void viewTasks() {
         System.out.println("Let's take a look at all your tasks...");
         for (Task task : tasks) {
-            System.out.println(tasks.indexOf(task) + 1 + "." + task.toString());
+            System.out.println(tasks.indexOf(task) + 1 + "." + task);
         }
         if (tasks.size() > 5) {
             System.out.println("0_0 Oh my, better get to work...");
-        } else if (tasks.size() == 0) {
+        } else if (tasks.isEmpty()) {
             System.out.println("No tasks! Great job :)");
         }
     }
@@ -129,7 +146,9 @@ public class Tasklist {
     public static void markDone(int index) {
         int actualIndex = index - 1;            // Throw NumberFormatException
         Task task = tasks.get(actualIndex);     // Throw ArrayIndexOutOfBoundsException
-        task.markDone();
+        task.setDone(true);
+        System.out.println("Yay, task done!");
+        System.out.println(task);
     }
 
     /**
@@ -140,7 +159,9 @@ public class Tasklist {
     public static void unmarkDone(int index) {
         int actualIndex = index - 1;            // Throw NumberFormatException
         Task task = tasks.get(actualIndex);     // Throw ArrayIndexOutOfBoundsException
-        task.unmarkDone();
+        task.setDone(false);
+        System.out.println("Oh no, task not done...");
+        System.out.println(task);
     }
 
 }

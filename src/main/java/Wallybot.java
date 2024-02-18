@@ -93,6 +93,11 @@ public class Wallybot {
                     Tasklist.addTask(event);
                     break;
 
+                case "delete":
+                    // Delete a task
+                    Tasklist.deleteTask(Integer.parseInt(input));
+                    break;
+
                 case "list":
                     // View all tasks
                     Tasklist.viewTasks();
@@ -123,7 +128,7 @@ public class Wallybot {
             } catch (InvalidCommandException e) {
                 // Show valid commands
                 System.out.println("Need some help? Here are all my valid commands:");
-                String[] commands = {"bye", "todo", "deadline", "event", "list", "mark", "unmark"};
+                String[] commands = {"bye", "todo", "deadline", "event", "list", "mark", "unmark", "delete"};
                 System.out.println(Arrays.toString(commands));
 
             // Handle description exceptions
