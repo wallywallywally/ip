@@ -1,7 +1,6 @@
 package tasks;
 
 /**
- * Deadline class
  * Task that has a do-by time.
  */
 public class Deadline extends Task {
@@ -15,7 +14,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Get by
+     * Get by.
      */
     public String getBy() {
         return by;

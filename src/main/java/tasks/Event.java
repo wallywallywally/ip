@@ -1,7 +1,6 @@
 package tasks;
 
 /**
- * Event class
  * Task that has start and end times.
  */
 public class Event extends Task {
@@ -17,14 +16,14 @@ public class Event extends Task {
     }
 
     /**
-     * Get from
+     * Get from.
      */
     public String getFrom() {
         return from;
     }
 
     /**
-     * Get to
+     * Get to.
      */
     public String getTo() {
         return to;

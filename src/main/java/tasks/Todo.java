@@ -1,7 +1,6 @@
 package tasks;
 
 /**
- * Todo class
  * Normal task.
  */
 public class Todo extends Task {
