@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.Arrays;
 
@@ -6,7 +7,6 @@ import tasks.Task;
 
 // Import custom exceptions
 import exceptions.InvalidCommandException;
-// Description exceptions
 import exceptions.descriptions.EmptyDescriptionException;
 import exceptions.descriptions.WrongFormatDescriptionException;
 import exceptions.descriptions.IncompleteDescriptionException;
@@ -21,7 +21,7 @@ public class Wallybot {
     private static final String DIVIDER = "- - - - - - - - - - - - -";
 
     /**
-     * Initialise chatbot
+     * Initialise chatbot.
      */
     public static void initWally() {
         String logo =
@@ -43,18 +43,19 @@ public class Wallybot {
         System.out.println(logo);
         System.out.println("Beep boop. Hello! I'm " + chatbotName + "! :P");
         System.out.println("What can I do for you today?");
+        Tasklist.initTasklist();
         System.out.println(DIVIDER);
     }
 
     /**
-     * Exit Wallybot
+     * Exit Wallybot.
      */
     public static void exitWally() {
         System.out.println("Productive day today! :D Shutting down...");
     }
 
     /**
-     * Echo user input
+     * Echo user input.
      */
     public static void echo(String input) {
         System.out.println(input);
@@ -123,16 +124,18 @@ public class Wallybot {
                     throw new InvalidCommandException();
 
                 }
+            }
 
             // Handle invalid command
-            } catch (InvalidCommandException e) {
+            catch (InvalidCommandException e) {
                 // Show valid commands
                 System.out.println("Need some help? Here are all my valid commands:");
                 String[] commands = {"bye", "todo", "deadline", "event", "list", "mark", "unmark", "delete"};
                 System.out.println(Arrays.toString(commands));
+            }
 
             // Handle description exceptions
-            } catch (EmptyDescriptionException e) {
+            catch (EmptyDescriptionException e) {
                 System.out.println("Whoopsies, the description for a task cannot be empty :|");
 
             } catch (WrongFormatDescriptionException e) {
@@ -146,13 +149,19 @@ public class Wallybot {
 
             } catch (IncompleteDescriptionException e) {
                 System.out.println("Oops, the description is incomplete :O");
+            }
 
             // Handle mark/unmark exceptions
-            } catch (IndexOutOfBoundsException e) {
+            catch (IndexOutOfBoundsException e) {
                 System.out.println("Oopsies, that number does not correspond to a task in your list :O");
 
             } catch (NumberFormatException e) {
                 System.out.println("Shucks...that's not a number :O");
+            }
+
+            // Handle file access exceptions
+            catch (IOException e) {
+                System.out.println("NO FILE FOUND OH GOD");
             }
 
             // Format text using divider

@@ -1,8 +1,7 @@
 package tasks;
 
 /**
- * Task abstract class
- * Stores information on task.
+ * Stores general information on a task.
  */
 public abstract class Task {
     // ATTRIBUTES
@@ -15,24 +14,39 @@ public abstract class Task {
         this.isDone = false;
     }
 
-    protected String getStatusIcon() {
-        return (isDone ? "X" : " ");
-    }
-    
     /**
-     * Return status and description of task
-     */
-    public String toString() {
-        return "[" + getStatusIcon() + "] " + description;
-    }
-
-    /**
-     * Set isDone
-     * Mark sets it to true
-     * Unmark sets it to false
+     * Set isDone.
      */
     public void setDone(boolean state) {
         isDone = state;
     }
 
+
+    /**
+     * Turn isDone into a status icon.
+     */
+    protected String getStatusIcon() {
+        return (isDone ? "X" : " ");
+    }
+
+    /**
+     * Get description.
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * Get isDone.
+     */
+    public int getIsDoneInt() {
+        return isDone ? 1 : 0;
+    }
+
+    /**
+     * Return status and description of task.
+     */
+    public String toString() {
+        return "[" + getStatusIcon() + "] " + description;
+    }
 }

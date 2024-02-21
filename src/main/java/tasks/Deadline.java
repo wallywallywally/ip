@@ -1,7 +1,6 @@
 package tasks;
 
 /**
- * Deadline class
  * Task that has a do-by time.
  */
 public class Deadline extends Task {
@@ -12,6 +11,13 @@ public class Deadline extends Task {
     public Deadline (String description, String by) {
         super(description);
         this.by = by;
+    }
+
+    /**
+     * Get by.
+     */
+    public String getBy() {
+        return by;
     }
 
     @Override
