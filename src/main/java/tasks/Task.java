@@ -27,20 +27,12 @@ public abstract class Task {
     }
 
     /**
-     * Mark task
+     * Set isDone
+     * Mark sets it to true
+     * Unmark sets it to false
      */
-    public void markDone() {
-        isDone = true;
-        System.out.println("Yay, task done!");
-        System.out.println(this);
+    public void setDone(boolean state) {
+        isDone = state;
     }
 
-    /**
-     * Unmark task
-     */
-    public void unmarkDone() {
-        isDone = false;
-        System.out.println("Oh no, task not done...");
-        System.out.println(this);
-    }
 }
