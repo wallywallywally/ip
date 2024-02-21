@@ -16,6 +16,20 @@ public class Event extends Task {
         this.to = to;
     }
 
+    /**
+     * Get from
+     */
+    public String getFrom() {
+        return from;
+    }
+
+    /**
+     * Get to
+     */
+    public String getTo() {
+        return to;
+    }
+
     @Override
     public String toString() {
         return "[E]" + super.toString()

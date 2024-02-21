@@ -1,4 +1,3 @@
-import java.rmi.NotBoundException;
 import java.util.ArrayList;
 
 // Import Task class and subclasses
@@ -141,6 +140,18 @@ public class Tasklist {
         int actualIndex = index - 1;            // Throw NumberFormatException
         Task task = tasks.get(actualIndex);     // Throw ArrayIndexOutOfBoundsException
         task.unmarkDone();
+    }
+
+    /**
+     * Initialise tasklist
+     * Add data from a file, otherwise create an empty file
+     */
+    public static void initTasklist() {
+        // read FILEPATH
+        // if it does not exist, createFile
+
+        // Tasklist.readFile()
+        // Tasklist.createFile()
     }
 
 }

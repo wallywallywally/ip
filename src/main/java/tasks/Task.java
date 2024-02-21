@@ -15,10 +15,35 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    /**
+     * Set isDone
+     */
+    public void setIsDone(boolean) {
+        return isDone ==
+    }
+
+
+    /**
+     * Turn isDone into a status icon
+     */
     protected String getStatusIcon() {
         return (isDone ? "X" : " ");
     }
-    
+
+    /**
+     * Get description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * Get isDone
+     */
+    public int getIsDoneInt() {
+        return isDone ? 1 : 0;
+    }
+
     /**
      * Return status and description of task
      */
