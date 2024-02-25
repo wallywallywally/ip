@@ -14,9 +14,6 @@ public abstract class Task {
         this.isDone = false;
     }
 
-    /**
-     * Set isDone.
-     */
     public void setDone(boolean state) {
         isDone = state;
     }
@@ -29,23 +26,17 @@ public abstract class Task {
         return (isDone ? "X" : " ");
     }
 
-    /**
-     * Get description.
-     */
     public String getDescription() {
         return description;
     }
 
     /**
-     * Get isDone.
+     * Get isDone as an Integer.
      */
     public int getIsDoneInt() {
         return isDone ? 1 : 0;
     }
 
-    /**
-     * Return status and description of task.
-     */
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
     }

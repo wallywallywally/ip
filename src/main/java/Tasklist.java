@@ -1,17 +1,14 @@
 import java.util.ArrayList;
 
-// Import Task class and subclasses
 import tasks.Task;
 import tasks.Todo;
 import tasks.Deadline;
 import tasks.Event;
 
-// Import custom exceptions
 import exceptions.descriptions.EmptyDescriptionException;
 import exceptions.descriptions.IncompleteDescriptionException;
 import exceptions.descriptions.WrongFormatDescriptionException;
 
-// File access
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.Scanner;
@@ -34,7 +31,6 @@ public class Tasklist {
      * @param input: tasks.Todo details
      */
     public static Todo createTodo(String input) throws EmptyDescriptionException {
-        // Check if input is empty
         if (input.isEmpty()) {
             throw new EmptyDescriptionException();
         }
@@ -48,19 +44,17 @@ public class Tasklist {
      * @param input: tasks.Deadline details
      */
     public static Deadline createDeadline(String input) throws EmptyDescriptionException, WrongFormatDescriptionException, IncompleteDescriptionException {
-        // Check if input is empty or wrong format
+        final String BY = "/by";
+
         if (input.isEmpty()) {
             throw new EmptyDescriptionException();
-        } else if (!input.contains("/by")) {
+        } else if (!input.contains(BY)) {
             throw new WrongFormatDescriptionException("Deadline");
         }
 
-        int byIndex = input.indexOf("/by");
-        int byLength = "/by".length();
-        String description = input.substring(0, byIndex).strip();
-        String by = input.substring(byIndex + byLength).strip();
+        String description = input.substring(0, input.indexOf(BY)).strip();
+        String by = input.substring(input.indexOf(BY) + BY.length()).strip();
 
-        // Check if description/by is empty
         if (description.isEmpty() | by.isEmpty()) {
             throw new IncompleteDescriptionException();
         }
@@ -74,22 +68,19 @@ public class Tasklist {
      * @param input: tasks.Event details
      */
     public static Event createEvent(String input) throws EmptyDescriptionException, WrongFormatDescriptionException, IncompleteDescriptionException {
-        // Check if input is empty or wrong format
+        final String FROM = "/from";
+        final String TO = "/to";
+
         if (input.isEmpty()) {
             throw new EmptyDescriptionException();
-        } else if (!input.contains("/from") | !input.contains("/to")) {
+        } else if (!input.contains(FROM) | !input.contains(TO)) {
             throw new WrongFormatDescriptionException("Event");
         }
 
-        int fromIndex = input.indexOf("/from");
-        int toIndex = input.indexOf("/to");
-        int fromLength = "/from".length();
-        int toLength = "/to".length();
-        String description = input.substring(0, fromIndex).strip();
-        String from = input.substring(fromIndex + fromLength, toIndex).strip();
-        String to = input.substring(toIndex + toLength).strip();
+        String description = input.substring(0, input.indexOf(FROM)).strip();
+        String from = input.substring(input.indexOf(FROM) + FROM.length(), input.indexOf(TO)).strip();
+        String to = input.substring(input.indexOf(TO) + TO.length()).strip();
 
-        // Check if description/from/to is empty
         if (description.isEmpty() | from.isEmpty() | to.isEmpty()) {
             throw new IncompleteDescriptionException();
         }
@@ -119,8 +110,8 @@ public class Tasklist {
      * @param index: Index of task
      */
     public static void deleteTask(int index) throws IOException {
-        int actualIndex = index - 1;            // Throw NumberFormatException
-        Task task = tasks.get(actualIndex);     // Throw ArrayIndexOutOfBoundsException
+        int actualIndex = index - 1;
+        Task task = tasks.get(actualIndex);
         tasks.remove(actualIndex);
         System.out.println("Brrrppp...deleting task:");
         System.out.println(task);
@@ -154,8 +145,8 @@ public class Tasklist {
      * @param index: Index of task
      */
     public static void markDone(int index) throws IOException {
-        int actualIndex = index - 1;            // Throw NumberFormatException
-        Task task = tasks.get(actualIndex);     // Throw ArrayIndexOutOfBoundsException
+        int actualIndex = index - 1;
+        Task task = tasks.get(actualIndex);
         task.setDone(true);
         System.out.println("Yay, task done!");
         System.out.println(task);
@@ -169,8 +160,8 @@ public class Tasklist {
      * @param index: Index of task
      */
     public static void unmarkDone(int index) throws IOException {
-        int actualIndex = index - 1;            // Throw NumberFormatException
-        Task task = tasks.get(actualIndex);     // Throw ArrayIndexOutOfBoundsException
+        int actualIndex = index - 1;
+        Task task = tasks.get(actualIndex);
         task.setDone(false);
         System.out.println("Oh no, task not done...");
         System.out.println(task);
@@ -183,7 +174,7 @@ public class Tasklist {
     private static final String FILEPATH = Paths.get(System.getProperty("user.home"), "Documents", "wallybot_data.txt").toString();
 
     /**
-     * On initialisation, read data from specified filepath, otherwise create an empty file there.
+     * Read data from specified filepath, otherwise create an empty file there.
      */
     public static void initTasklist() {
         try {
@@ -236,22 +227,21 @@ public class Tasklist {
             default:
                 // Do nothing
             }
+
             if (task != null) {
                 task.setDone(details[1].equals("1"));
                 tasks.add(task);
             }
-
         }
     }
 
     /**
      * Write data into specified file.
-     * Works by overwriting each time something is updated.
      */
     private static void writeFile() throws IOException {
         StringBuilder formattedData = new StringBuilder();
         for (Task task : tasks) {
-            // format data: type / isDone / description / extra
+            // FORMAT: type / isDone / description / extra
             char type = task.toString().charAt(1);
             String entry = type + DIVIDER + task.getIsDoneInt() + DIVIDER + task.getDescription();
             switch (type) {
