@@ -109,6 +109,8 @@ public class Tasklist {
             "You now have " + taskCount +
             (taskCount == 1 ? " task" : " tasks")
         );
+
+        writeFile();
     }
 
     /**
