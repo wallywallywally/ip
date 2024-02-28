@@ -13,7 +13,6 @@ public class Parser {
      */
     public void executeCommand(String command, String input, Tasklist tasks) throws WallybotException {
         switch (command) {
-
         case "todo":
         case "deadline":
         case "event":
@@ -24,6 +23,10 @@ public class Parser {
         case "unmark":
             // Mark or unmark task
             tasks.markDone(command.equals("mark"), Integer.parseInt(input));
+            break;
+
+        case "find":
+            tasks.findTasks(input);
             break;
 
         case "delete":
