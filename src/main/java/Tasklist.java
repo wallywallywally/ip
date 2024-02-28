@@ -9,28 +9,25 @@ import exceptions.descriptions.EmptyDescriptionException;
 import exceptions.descriptions.IncompleteDescriptionException;
 import exceptions.descriptions.WrongFormatDescriptionException;
 
-import java.io.File;
-import java.nio.file.Paths;
-import java.util.Scanner;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-
 
 /**
  * Store and manage tasks.
  */
 public class Tasklist {
-    // TASKS ARRAYLIST
-    private static ArrayList<Task> tasks = new ArrayList<>();
+    // ARRAYLIST
+    private ArrayList<Task> tasks;
 
     // METHODS
+    public Tasklist() {
+        tasks = new ArrayList<>();
+    }
+
     /**
-     * Create tasks.Todo object.
+     * Create Todo object.
      *
-     * @param input: tasks.Todo details
+     * @param input: Todo details
      */
-    public static Todo createTodo(String input) throws EmptyDescriptionException {
+    public Todo createTodo(String input) throws EmptyDescriptionException {
         if (input.isEmpty()) {
             throw new EmptyDescriptionException();
         }
@@ -39,11 +36,11 @@ public class Tasklist {
     }
 
     /**
-     * Create tasks.Deadline object.
+     * Create Deadline object.
      *
-     * @param input: tasks.Deadline details
+     * @param input: Deadline details
      */
-    public static Deadline createDeadline(String input) throws EmptyDescriptionException, WrongFormatDescriptionException, IncompleteDescriptionException {
+    public Deadline createDeadline(String input) throws EmptyDescriptionException, WrongFormatDescriptionException, IncompleteDescriptionException {
         final String BY = "/by";
 
         if (input.isEmpty()) {
@@ -63,11 +60,11 @@ public class Tasklist {
     }
 
     /**
-     * Create tasks.Event object.
+     * Create Event object.
      *
-     * @param input: tasks.Event details
+     * @param input: Event details
      */
-    public static Event createEvent(String input) throws EmptyDescriptionException, WrongFormatDescriptionException, IncompleteDescriptionException {
+    public Event createEvent(String input) throws EmptyDescriptionException, WrongFormatDescriptionException, IncompleteDescriptionException {
         final String FROM = "/from";
         final String TO = "/to";
 
@@ -91,7 +88,7 @@ public class Tasklist {
     /**
      * Add a new task.
      */
-    public static void addTask(Task task) throws IOException {
+    public void addTask(Task task) {
         tasks.add(task);
         System.out.println("Nice! A new task has been added:");
         System.out.println(task);
@@ -100,8 +97,6 @@ public class Tasklist {
             "You now have " + taskCount +
             (taskCount == 1 ? " task" : " tasks")
         );
-
-        writeFile();
     }
 
     /**
@@ -109,7 +104,7 @@ public class Tasklist {
      *
      * @param index: Index of task
      */
-    public static void deleteTask(int index) throws IOException {
+    public void deleteTask(int index) {
         int actualIndex = index - 1;
         Task task = tasks.get(actualIndex);
         tasks.remove(actualIndex);
@@ -120,14 +115,12 @@ public class Tasklist {
             "You now have " + taskCount +
             (taskCount == 1 ? " task" : " tasks")
         );
-
-        writeFile();
     }
 
     /**
      * View all tasks.
      */
-    public static void viewTasks() {
+    public void viewTasks() {
         System.out.println("Let's take a look at all your tasks...");
         for (Task task : tasks) {
             System.out.println(tasks.indexOf(task) + 1 + "." + task);
@@ -140,106 +133,36 @@ public class Tasklist {
     }
 
     /**
-     * Mark selected task.
+     * Mark or unmark selected task.
      *
+     * @param done: Mark if true, unmark if false
      * @param index: Index of task
      */
-    public static void markDone(int index) throws IOException {
+    public void markDone(boolean done, int index) {
         int actualIndex = index - 1;
         Task task = tasks.get(actualIndex);
-        task.setDone(true);
-        System.out.println("Yay, task done!");
+        task.setDone(done);
+        System.out.println(done ? "Yay, task done!" : "Oh no, task not done...");
         System.out.println(task);
-
-        writeFile();
-    }
-
-    /**
-     * Unmark selected task.
-     *
-     * @param index: Index of task
-     */
-    public static void unmarkDone(int index) throws IOException {
-        int actualIndex = index - 1;
-        Task task = tasks.get(actualIndex);
-        task.setDone(false);
-        System.out.println("Oh no, task not done...");
-        System.out.println(task);
-
-        writeFile();
     }
 
     // FILE ACCESS
-    private static final String DIVIDER = "/";
-    private static final String FILEPATH = Paths.get(System.getProperty("user.home"), "Documents", "wallybot_data.txt").toString();
-
     /**
-     * Read data from specified filepath, otherwise create an empty file there.
+     * Add existing tasks from filepath.
      */
-    public static void initTasklist() {
-        try {
-            readFile();
-        } catch (FileNotFoundException e) {
-            createFile();
-        }
-
+    public void addExisting(Task task) {
+        tasks.add(task);
     }
 
     /**
-     * Create file for storing data at specified filepath.
+     * Format data for writing into desired filepath.
+     *
+     * @return Data formatted for writing
      */
-    private static void createFile() {
-        File data = new File(FILEPATH);
-        try {
-            if (data.createNewFile()) {
-                System.out.println("File created for storing my data :))");
-            }
-
-        } catch (IOException e) {
-            System.out.println("Something went wrong...my data cannot be stored >:(");
-        }
-    }
-
-    /**
-     * Read data from specified filepath.
-     */
-    private static void readFile() throws FileNotFoundException {
-        File data = new File(FILEPATH);
-        Scanner reader = new Scanner(data);
-
-        // Process each line
-        while (reader.hasNext()) {
-            String entry = reader.nextLine();
-            String[] details = entry.split(DIVIDER);
-
-            // Format and create task
-            Task task = null;
-            switch (details[0]) {
-            case ("T"):
-                task = new Todo(details[2]);
-                break;
-            case ("D"):
-                task = new Deadline(details[2], details[3]);
-                break;
-            case ("E"):
-                task = new Event(details[2], details[3], details[4]);
-                break;
-            default:
-                // Do nothing
-            }
-
-            if (task != null) {
-                task.setDone(details[1].equals("1"));
-                tasks.add(task);
-            }
-        }
-    }
-
-    /**
-     * Write data into specified file.
-     */
-    private static void writeFile() throws IOException {
+    public String formatWriteData() {
         StringBuilder formattedData = new StringBuilder();
+        final String DIVIDER = "/";
+
         for (Task task : tasks) {
             // FORMAT: type / isDone / description / extra
             char type = task.toString().charAt(1);
@@ -260,9 +183,9 @@ public class Tasklist {
             formattedData.append(entry).append(System.lineSeparator());
         }
 
-        FileWriter writer = new FileWriter(FILEPATH);
-        writer.write(formattedData.toString());
-        writer.close();
+        return formattedData.toString();
     }
+
+
 
 }
