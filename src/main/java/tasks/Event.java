@@ -16,6 +16,9 @@ public class Event extends Task {
     protected LocalDate toDate;
 
     // METHODS
+    /**
+     * Constructor for Event.
+     */
     public Event (String description, String from, String to) {
         super(description);
         this.from = from;
@@ -29,10 +32,16 @@ public class Event extends Task {
         } catch (DateTimeParseException ignored) {}
     }
 
+    /**
+     * Get from.
+     */
     public String getFrom() {
         return from;
     }
 
+    /**
+     * Get to.
+     */
     public String getTo() {
         return to;
     }

@@ -17,6 +17,11 @@ public class Wallybot {
     private static boolean running = true;
 
     // METHODS
+    /**
+     * Constructor for Wallybot.
+     *
+     * @param filepath Where data is stored.
+     */
     public Wallybot (String filepath) {
         ui = new Ui();
         parser = new Parser();
@@ -64,7 +69,9 @@ public class Wallybot {
         }
     }
 
-    /*  MAIN  */
+    /**
+     * Main for Wallybot.
+     */
     public static void main(String[] args) {
         String filepath = Paths.get(System.getProperty("user.home"), "Documents", "wallybot_data.txt").toString();
         new Wallybot(filepath).run();

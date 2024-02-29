@@ -12,11 +12,18 @@ public class Ui {
     private Scanner in;
 
     // METHODS
+    /**
+     * Constructor for Ui.
+     * Initialise Scanner to read input.
+     */
     public Ui() {
         in = new Scanner(System.in);
         showWelcome();
     }
 
+    /**
+     * Print welcome message.
+     */
     public void showWelcome() {
         final String LOGO =
                 " __       __          __ __          __                  __     \n" +
@@ -40,6 +47,9 @@ public class Ui {
         System.out.println(TEXTDIVIDER);
     }
 
+    /**
+     * Get relevant command and input from user input.
+     */
     public String[] processInput() throws WallybotException {
         String command = in.next().toLowerCase();
         String input = in.nextLine().strip();
@@ -47,10 +57,16 @@ public class Ui {
         return new String[]{command, input};
     }
 
+    /**
+     * Print error message.
+     */
     public void showError(String error) {
         System.out.println(error);
     }
 
+    /**
+     * Print text divider for user readability.
+     */
     public void showLine() {
         System.out.println(TEXTDIVIDER);
     }
