@@ -14,7 +14,7 @@ public class InvalidCommandException extends WallybotException {
      * Create a message that shows all valid commands to help the user.
      */
     public String showCommands() {
-        String[] commands = {"bye", "todo", "deadline", "event", "list", "mark", "unmark", "delete"};
+        String[] commands = {"bye", "todo", "deadline", "event", "list", "mark", "unmark", "delete", "find"};
         return "Need some help? Here are all my valid commands:" +
                 System.lineSeparator() +
                 Arrays.toString(commands);

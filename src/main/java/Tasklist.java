@@ -150,6 +150,34 @@ public class Tasklist {
         System.out.println(task);
     }
 
+    /**
+     * Show a list of tasks containing the given keyword.
+     *
+     * @param key: Keyword to search for
+     */
+    public void findTasks(String key) {
+        ArrayList<Integer> indices = new ArrayList<>();
+        for (Task task : tasks) {
+            if (task.getDescription().contains(key)) {
+                indices.add(tasks.indexOf(task));
+            }
+        }
+
+        if (!indices.isEmpty()) {
+            System.out.println(
+                    "I have found " + indices.size() + " matching " +
+                    (indices.size() == 1 ? "task" : "tasks")
+                    + ":"
+            );
+            for (int i = 0; i < indices.size() ; i++) {
+                System.out.println(i + 1 + "." + tasks.get(indices.get(i)));
+            }
+        } else {
+            System.out.println("There are no matching tasks :O");
+        }
+
+    }
+
     // FILE ACCESS
     /**
      * Add existing tasks from filepath.
