@@ -9,7 +9,12 @@ import exceptions.InvalidCommandException;
  */
 public class Parser {
     /**
-     * Execute given command
+     * Execute given command.
+     *
+     * @param command Command word.
+     * @param input Command details.
+     * @param tasks Tasklist.
+     * @throws WallybotException Exception thrown depending on error.
      */
     public void executeCommand(String command, String input, Tasklist tasks) throws WallybotException {
         switch (command) {
@@ -52,6 +57,8 @@ public class Parser {
 
     /**
      * Create subclass Todo/Deadline/Event of Task
+     *
+     * @throws WallybotException Exception thrown depending on error.
      */
     public void createTask(String command, String input, Tasklist tasks) throws WallybotException {
         switch (command) {

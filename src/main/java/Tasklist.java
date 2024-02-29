@@ -22,6 +22,9 @@ public class Tasklist {
     private ArrayList<Task> tasks;
 
     // METHODS
+    /**
+     * Constructor for Tasklist.
+     */
     public Tasklist() {
         tasks = new ArrayList<>();
     }
@@ -29,7 +32,7 @@ public class Tasklist {
     /**
      * Create Todo object.
      *
-     * @param input: Todo details
+     * @param input Todo details.
      */
     public Todo createTodo(String input) throws EmptyDescriptionException {
         if (input.isEmpty()) {
@@ -42,7 +45,7 @@ public class Tasklist {
     /**
      * Create Deadline object.
      *
-     * @param input: Deadline details
+     * @param input Deadline details.
      */
     public Deadline createDeadline(String input) throws EmptyDescriptionException, WrongFormatDescriptionException, IncompleteDescriptionException {
         final String BY = "/by";
@@ -66,7 +69,7 @@ public class Tasklist {
     /**
      * Create Event object.
      *
-     * @param input: Event details
+     * @param input Event details.
      */
     public Event createEvent(String input) throws EmptyDescriptionException, WrongFormatDescriptionException, IncompleteDescriptionException {
         final String FROM = "/from";
@@ -90,7 +93,7 @@ public class Tasklist {
     }
 
     /**
-     * Add a new task.
+     * Add a new Task.
      */
     public void addTask(Task task) {
         tasks.add(task);
@@ -104,9 +107,9 @@ public class Tasklist {
     }
 
     /**
-     * Delete a task
+     * Delete a Task.
      *
-     * @param index: Index of task
+     * @param index Index of Task in Tasklist.
      */
     public void deleteTask(int index) {
         int actualIndex = index - 1;
@@ -122,7 +125,7 @@ public class Tasklist {
     }
 
     /**
-     * View all tasks.
+     * View all Tasks.
      */
     public void viewTasks() {
         System.out.println("Let's take a look at all your tasks...");
@@ -137,10 +140,10 @@ public class Tasklist {
     }
 
     /**
-     * Mark or unmark selected task.
+     * Mark or unmark selected Task.
      *
-     * @param done: Mark if true, unmark if false
-     * @param index: Index of task
+     * @param done True if "mark", false if "unmark".
+     * @param index Index of Task in Tasklist.
      */
     public void markDone(boolean done, int index) {
         int actualIndex = index - 1;
@@ -151,9 +154,9 @@ public class Tasklist {
     }
 
     /**
-     * Show a list of tasks containing the given keyword.
+     * Show Tasks containing the given keyword.
      *
-     * @param key: Keyword to search for
+     * @param key Keyword to search for.
      */
     public void findTasks(String key) {
         ArrayList<Integer> indices = new ArrayList<>();
@@ -180,16 +183,16 @@ public class Tasklist {
 
     // FILE ACCESS
     /**
-     * Add existing tasks from filepath.
+     * Add existing Tasks from filepath.
      */
     public void addExisting(Task task) {
         tasks.add(task);
     }
 
     /**
-     * Format data for writing into desired filepath.
+     * Format Tasklist for writing into desired filepath.
      *
-     * @return Data formatted for writing
+     * @return Data formatted for writing.
      */
     public String formatWriteData() {
         StringBuilder formattedData = new StringBuilder();
