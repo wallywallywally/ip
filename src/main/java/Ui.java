@@ -54,8 +54,4 @@ public class Ui {
     public void showLine() {
         System.out.println(TEXTDIVIDER);
     }
-
-    // EXTRACT ALL PRINTS FROM TASKLIST TO HERE ?
-
-
 }
