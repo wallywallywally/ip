@@ -6,6 +6,9 @@ import java.util.Arrays;
  * Thrown when the user does not input a valid command word.
  */
 public class InvalidCommandException extends WallybotException {
+    /**
+     * Constructor for InvalidCommandException.
+     */
     public InvalidCommandException() {
         message = showCommands();
     }

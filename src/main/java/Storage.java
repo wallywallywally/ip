@@ -17,7 +17,8 @@ public class Storage {
     private String filepath;
 
     /**
-     * Initialise storage by reading data from specified filepath, otherwise create an empty file there.
+     * Constructor for Storage.
+     * Reads data from specified filepath, otherwise create an empty file there.
      */
     public Storage(String filepath, Tasklist tasks) {
         this.filepath = filepath;
@@ -47,6 +48,8 @@ public class Storage {
 
     /**
      * Read formatted data from specified filepath.
+     *
+     * @throws FileNotFoundException If no file is found.
      */
     public void readFile(Tasklist tasks) throws FileNotFoundException {
         File data = new File(filepath);
@@ -82,6 +85,8 @@ public class Storage {
 
     /**
      * Write formatted data into specified file.
+     *
+     * @throws IOException If there is an error during writing.
      */
     public void writeFile(String data) throws IOException {
         FileWriter writer = new FileWriter(filepath);

@@ -14,6 +14,9 @@ public class Deadline extends Task {
     protected LocalDate byDate;
 
     // METHODS
+    /**
+     * Constructor for Deadline.
+     */
     public Deadline (String description, String by) {
         super(description);
         this.by = by;
@@ -22,6 +25,9 @@ public class Deadline extends Task {
         } catch (DateTimeParseException ignored) {}
     }
 
+    /**
+     * Get by.
+     */
     public String getBy() {
         return by;
     }
