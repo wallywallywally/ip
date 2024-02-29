@@ -3,6 +3,8 @@ import java.nio.file.Paths;
 import java.io.IOException;
 import exceptions.WallybotException;
 
+import javax.swing.*;
+
 
 /**
  * Wallybot is a personal assistant chatbot.

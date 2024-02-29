@@ -3,11 +3,18 @@ import tasks.Task;
 import exceptions.WallybotException;
 import exceptions.InvalidCommandException;
 
+import java.util.Scanner;
+
 
 /**
  * Makes sense of the user's input.
  */
 public class Parser {
+    /**
+     * Constructor for Parser.
+     */
+    public Parser() {}
+
     /**
      * Execute given command.
      *
