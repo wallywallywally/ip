@@ -123,7 +123,7 @@ any command that changes the data, removing the need to save manually.
 Wallybot's data is saved automatically as a txt file 
 `[user]/Documents/wallybot_data.txt`.
 
-> [!CAUTION]
+> #### CAUTION
 > Any changes that invalidate the data format will lead to
 > incomplete data being read. Edits may also cause Wallybot to
 > behave unexpectedly.
