@@ -25,7 +25,7 @@ public class Storage {
 
         try {
             readFile(tasks);
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException | IndexOutOfBoundsException e) {
             createFile();
         }
     }
@@ -35,6 +35,7 @@ public class Storage {
      */
     public void createFile() {
         File data = new File(filepath);
+
         try {
             if (data.createNewFile()) {
                 System.out.println("File created for storing my data :))");

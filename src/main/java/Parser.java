@@ -21,9 +21,10 @@ public class Parser {
      * @param command Command word.
      * @param input Command details.
      * @param tasks Tasklist.
+     * @return Boolean that indicates if Wallybot is running.
      * @throws WallybotException Exception thrown depending on error.
      */
-    public void executeCommand(String command, String input, Tasklist tasks) throws WallybotException {
+    public boolean executeCommand(String command, String input, Tasklist tasks) throws WallybotException {
         switch (command) {
         case "todo":
         case "deadline":
@@ -53,13 +54,16 @@ public class Parser {
 
         case "bye":
             // Exit chatbot
-            Wallybot.exitWally();
-            break;
+//            Wallybot.exitWally();
+            return false;
+//            break;
 
         default:
             // Invalid command
             throw new InvalidCommandException();
         }
+
+        return true;
     }
 
     /**

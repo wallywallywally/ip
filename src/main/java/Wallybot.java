@@ -16,7 +16,6 @@ public class Wallybot {
     private Storage storage;
     private Ui ui;
     private Parser parser;
-    private static boolean running = true;
 
     // METHODS
     /**
@@ -32,17 +31,9 @@ public class Wallybot {
     }
 
     /**
-     * Exit Wallybot.
-     */
-    public static void exitWally() {
-        System.out.println("Productive day today! :D Shutting down...");
-        running = false;
-    }
-
-    /**
      * Echo user input.
      */
-    public static void echo(String input) {
+    public void echo(String input) {
         System.out.println(input);
     }
 
@@ -50,10 +41,12 @@ public class Wallybot {
      * Run Wallybot.
      */
     public void run() {
-        while (running) {
+        boolean isRunning = true;
+
+        while (isRunning) {
             try {
                  String[] details = ui.processInput();
-                 parser.executeCommand(details[0], details[1], tasks);
+                 isRunning = parser.executeCommand(details[0], details[1], tasks);
                  storage.writeFile(tasks.formatWriteData());
 
             } catch (WallybotException e) {
@@ -69,6 +62,8 @@ public class Wallybot {
                 ui.showLine();
             }
         }
+
+        ui.showExit();
     }
 
     /**
