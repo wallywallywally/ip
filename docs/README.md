@@ -7,17 +7,17 @@ Command Line Interface** (CLI).
 It keeps track of your tasks and allows you to manage them!
 
 - Features
-  - [Adding a Todo: `todo`](#Adding-a-Todo-todo)
-  - [Adding a Deadline: `deadline`](#Adding-a-Deadline-deadline)
-  - [Adding an Event: `event`](#Adding-an-Event-event)
-  - [List all tasks: `list`](#List-all-tasks-list)
-  - [Mark a task: `mark`](#Mark-a-task-mark)
-  - [Unmark a task: `unmark`](#Unmark-a-task-unmark)
-  - [Find tasks by keyword: `find`](#Find-tasks-by-keyword-find)
-  - [Delete a task: `delete`](#Delete-a-task-delete)
-  - [Exiting the program: `bye`](#Exiting-the-program-bye)
-  - [Saving the data](#Saving-the-data)
-  - [Editing the data file](#Editing-the-data-file)
+  - [Adding a Todo: `todo`](#adding-a-todo-todo)
+  - [Adding a Deadline: `deadline`](#adding-a-deadline-deadline)
+  - [Adding an Event: `event`](#adding-an-event-event)
+  - [List all tasks: `list`](#list-all-tasks-list)
+  - [Mark a task: `mark`](#mark-a-task-mark)
+  - [Unmark a task: `unmark`](#unmark-a-task-unmark)
+  - [Find tasks by keyword: `find`](#find-tasks-by-keyword-find)
+  - [Delete a task: `delete`](#delete-a-task-delete)
+  - [Exiting the program: `bye`](#exiting-the-program-bye)
+  - [Saving the data](#saving-the-data)
+  - [Editing the data file](#editing-the-data-file)
 
 ## Features
 
@@ -29,6 +29,7 @@ Format: `todo DESCRIPTION`
 Example: `todo complete tutorial`
 
 
+&nbsp;
 ### Adding a Deadline: `deadline`
 Adds a task of Deadline type.
 
@@ -39,6 +40,7 @@ Format: `deadline DESCRIPTION /by BY`
 Example: `deadline complete assignment /by Friday`
 
 
+&nbsp;
 ### Adding an Event: `event`
 Adds a task of Event type.
 
@@ -49,11 +51,14 @@ Format: `event DESCRIPTION /from FROM /to TO`
 Example: `event band practice /from 2pm /to 3pm`
 
 
+&nbsp;
 ### List all tasks: `list`
 Shows a lists of all tasks stored.
 
 Format: `list`
 
+
+&nbsp;
 ### Mark a task: `mark`
 Mark a task as completed.
 
@@ -64,6 +69,8 @@ the number shown in `list`.
 
 Example: `mark 5`
 
+
+&nbsp;
 ### Unmark a task: `unmark`
 Unmark a task.
 
@@ -75,6 +82,7 @@ the number shown in `list`.
 Example: `unmark 2`
 
 
+&nbsp;
 ### Find tasks by keyword: `find`
 Find tasks that contain a given keyword.
 
@@ -85,6 +93,7 @@ Format: `find KEYWORD`
 Example: `find homework`
 
 
+&nbsp;
 ### Delete a task: `delete`
 Deletes the specified task.
 
@@ -96,17 +105,20 @@ the number shown in `list`.
 Example: `delete 1`
 
 
+&nbsp;
 ### Exiting the program: `bye`
 Exits the program.
 
 Format: `bye`
 
 
+&nbsp;
 ### Saving the data
 Wallybot's data is saved in the hard disk automatically after
 any command that changes the data, removing the need to save manually.
 
 
+&nbsp;
 ### Editing the data file
 Wallybot's data is saved automatically as a txt file 
 `[user]/Documents/wallybot_data.txt`.
@@ -115,6 +127,6 @@ Wallybot's data is saved automatically as a txt file
 > Any changes that invalidate the data format will lead to
 > incomplete data being read. Edits may also cause Wallybot to
 > behave unexpectedly.
-> 
+> <br>
 > It is recommended to make a backup
 > before editing.
