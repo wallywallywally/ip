@@ -8,17 +8,17 @@ It keeps track of your tasks and allows you to manage them!
 
 - [Quick start](#quick-start)
 - [Features](#features)
-  - [Adding a Todo: `todo`](#adding-a-todo-todo)
-  - [Adding a Deadline: `deadline`](#adding-a-deadline-deadline)
-  - [Adding an Event: `event`](#adding-an-event-event)
-  - [List all tasks: `list`](#list-all-tasks-list)
-  - [Mark a task: `mark`](#mark-a-task-mark)
-  - [Unmark a task: `unmark`](#unmark-a-task-unmark)
-  - [Find tasks by keyword: `find`](#find-tasks-by-keyword-find)
-  - [Delete a task: `delete`](#delete-a-task-delete)
-  - [Exiting the program: `bye`](#exiting-the-program-bye)
-  - [Saving the data](#saving-the-data)
-  - [Editing the data file](#editing-the-data-file)
+    - [Adding a Todo: `todo`](#adding-a-todo-todo)
+    - [Adding a Deadline: `deadline`](#adding-a-deadline-deadline)
+    - [Adding an Event: `event`](#adding-an-event-event)
+    - [List all tasks: `list`](#list-all-tasks-list)
+    - [Mark a task: `mark`](#mark-a-task-mark)
+    - [Unmark a task: `unmark`](#unmark-a-task-unmark)
+    - [Find tasks by keyword: `find`](#find-tasks-by-keyword-find)
+    - [Delete a task: `delete`](#delete-a-task-delete)
+    - [Exiting the program: `bye`](#exiting-the-program-bye)
+    - [Saving the data](#saving-the-data)
+    - [Editing the data file](#editing-the-data-file)
 - [Command summary](#command-summary)
 
 ## Quick start
@@ -27,6 +27,7 @@ It keeps track of your tasks and allows you to manage them!
 3. Open a command terminal, `cd` into the folder where the JAR file is
 and use `java -jar wallybot.jar` to run Wallybot!
 
+&nbsp;
 ## Features
 
 ### Adding a Todo: `todo`
@@ -139,8 +140,9 @@ Wallybot's data is saved automatically as a txt file
 > It is recommended to make a backup
 > before editing.
 
-
+&nbsp;
 ## Command summary
+
 | Command  | Format and example                                                                     |
 |----------|----------------------------------------------------------------------------------------|
 | todo     | `todo DESCRIPTION`<br/>e.g. `todo complete tutorial`                                   |
