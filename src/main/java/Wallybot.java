@@ -3,12 +3,10 @@ import java.nio.file.Paths;
 import java.io.IOException;
 import exceptions.WallybotException;
 
-import javax.swing.*;
-
 
 /**
- * Wallybot is a personal assistant chatbot.
- * It keeps track of your tasks and allows you to manage them.
+ * Represents Wallybot, which is a personal assistant chatbot.
+ * It allows the user to keep track of and manage their tasks.
  */
 public class Wallybot {
     // ATTRIBUTES
@@ -19,7 +17,7 @@ public class Wallybot {
 
     // METHODS
     /**
-     * Constructor for Wallybot.
+     * Constructs Wallybot.
      *
      * @param filepath Where data is stored.
      */
@@ -31,14 +29,14 @@ public class Wallybot {
     }
 
     /**
-     * Echo user input.
+     * Echoes user input.
      */
     public void echo(String input) {
         System.out.println(input);
     }
 
     /**
-     * Run Wallybot.
+     * Runs Wallybot.
      */
     public void run() {
         boolean isRunning = true;

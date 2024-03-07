@@ -6,7 +6,7 @@ import java.time.format.DateTimeParseException;
 
 
 /**
- * Task that has a do-by time.
+ * Represents a task that has a do-by time.
  */
 public class Deadline extends Task {
     // ATTRIBUTES
@@ -15,7 +15,7 @@ public class Deadline extends Task {
 
     // METHODS
     /**
-     * Constructor for Deadline.
+     * Constructs Deadline.
      */
     public Deadline (String description, String by) {
         super(description);
@@ -26,7 +26,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Get by.
+     * Gets by.
      */
     public String getBy() {
         return by;

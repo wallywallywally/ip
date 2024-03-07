@@ -3,11 +3,11 @@ package exceptions.descriptions;
 import exceptions.WallybotException;
 
 /**
- * Thrown when the description does not follow the proper format.
+ * Represents the exception thrown when the description does not follow the proper format.
  */
 public class WrongFormatDescriptionException extends WallybotException {
     /**
-     * Constructor for WrongFormatDescriptionException.
+     * Constructs WrongFormatDescriptionException.
      *
      * @param type: Task's type.
      */
@@ -16,7 +16,7 @@ public class WrongFormatDescriptionException extends WallybotException {
     }
 
     /**
-     * Create a message that reminds the user of the proper format according to the Task's type.
+     * Creates a message that reminds the user of the proper format according to the Task's type.
      */
     public String showWrongFormat(String type) {
         StringBuilder message = new StringBuilder();

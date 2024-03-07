@@ -3,18 +3,18 @@ package exceptions;
 import java.util.Arrays;
 
 /**
- * Thrown when the user does not input a valid command word.
+ * Represents the exception thrown when the user does not input a valid command word.
  */
 public class InvalidCommandException extends WallybotException {
     /**
-     * Constructor for InvalidCommandException.
+     * Constructs InvalidCommandException.
      */
     public InvalidCommandException() {
         message = showCommands();
     }
 
     /**
-     * Create a message that shows all valid commands to help the user.
+     * Creates a message that shows all valid commands to help the user.
      */
     public String showCommands() {
         String[] commands = {"bye", "todo", "deadline", "event", "list", "mark", "unmark", "delete", "find"};

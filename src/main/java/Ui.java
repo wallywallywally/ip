@@ -13,8 +13,7 @@ public class Ui {
 
     // METHODS
     /**
-     * Constructor for Ui.
-     * Initialise Scanner to read input.
+     * Constructs Ui and initialises Scanner to read input.
      */
     public Ui() {
         in = new Scanner(System.in);
@@ -22,7 +21,7 @@ public class Ui {
     }
 
     /**
-     * Print welcome message.
+     * Prints welcome message.
      */
     public void showWelcome() {
         final String LOGO =
@@ -42,7 +41,7 @@ public class Ui {
     }
 
     /**
-     * Get relevant command and input from user input.
+     * Gets relevant command and input from user input.
      */
     public String[] processInput() throws WallybotException {
         String command = in.next().toLowerCase();
@@ -52,21 +51,21 @@ public class Ui {
     }
 
     /**
-     * Print error message.
+     * Prints error message.
      */
     public void showError(String error) {
         System.out.println(error);
     }
 
     /**
-     * Print text divider for user readability.
+     * Prints text divider for user readability.
      */
     public void showLine() {
         System.out.println(TEXTDIVIDER);
     }
 
     /**
-     * Print exit message.
+     * Prints exit message.
      */
     public void showExit() {
         System.out.println("Productive day today! :D Shutting down...");

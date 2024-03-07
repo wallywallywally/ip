@@ -6,7 +6,7 @@ import java.time.format.DateTimeParseException;
 
 
 /**
- * Task that has start and end times.
+ * Represent a task that has start and end times.
  */
 public class Event extends Task {
     // ATTRIBUTES
@@ -17,7 +17,7 @@ public class Event extends Task {
 
     // METHODS
     /**
-     * Constructor for Event.
+     * Constructs Event.
      */
     public Event (String description, String from, String to) {
         super(description);
@@ -33,14 +33,14 @@ public class Event extends Task {
     }
 
     /**
-     * Get from.
+     * Gets from.
      */
     public String getFrom() {
         return from;
     }
 
     /**
-     * Get to.
+     * Gets to.
      */
     public String getTo() {
         return to;

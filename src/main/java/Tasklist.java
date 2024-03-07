@@ -9,13 +9,9 @@ import exceptions.descriptions.EmptyDescriptionException;
 import exceptions.descriptions.IncompleteDescriptionException;
 import exceptions.descriptions.WrongFormatDescriptionException;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
-
 
 /**
- * Store and manage tasks.
+ * Stores and manages tasks.
  */
 public class Tasklist {
     // ARRAYLIST
@@ -23,14 +19,14 @@ public class Tasklist {
 
     // METHODS
     /**
-     * Constructor for Tasklist.
+     * Constructs Tasklist.
      */
     public Tasklist() {
         tasks = new ArrayList<>();
     }
 
     /**
-     * Create Todo object.
+     * Creates Todo.
      *
      * @param input Todo details.
      */
@@ -43,7 +39,7 @@ public class Tasklist {
     }
 
     /**
-     * Create Deadline object.
+     * Creates Deadline.
      *
      * @param input Deadline details.
      */
@@ -67,7 +63,7 @@ public class Tasklist {
     }
 
     /**
-     * Create Event object.
+     * Creates Event.
      *
      * @param input Event details.
      */
@@ -93,7 +89,7 @@ public class Tasklist {
     }
 
     /**
-     * Add a new Task.
+     * Adds a new Task.
      */
     public void addTask(Task task) {
         tasks.add(task);
@@ -107,7 +103,7 @@ public class Tasklist {
     }
 
     /**
-     * Delete a Task.
+     * Deletes a Task.
      *
      * @param index Index of Task in Tasklist.
      */
@@ -125,7 +121,7 @@ public class Tasklist {
     }
 
     /**
-     * View all Tasks.
+     * Shows all Tasks.
      */
     public void viewTasks() {
         System.out.println("Let's take a look at all your tasks...");
@@ -140,7 +136,7 @@ public class Tasklist {
     }
 
     /**
-     * Mark or unmark selected Task.
+     * Marks or unmarks selected Task.
      *
      * @param done True if "mark", false if "unmark".
      * @param index Index of Task in Tasklist.
@@ -154,7 +150,7 @@ public class Tasklist {
     }
 
     /**
-     * Show Tasks containing the given keyword.
+     * Shows Tasks containing the given keyword.
      *
      * @param key Keyword to search for.
      */
@@ -183,14 +179,14 @@ public class Tasklist {
 
     // FILE ACCESS
     /**
-     * Add existing Tasks from filepath.
+     * Adds existing Tasks from filepath.
      */
     public void addExisting(Task task) {
         tasks.add(task);
     }
 
     /**
-     * Format Tasklist for writing into desired filepath.
+     * Formats Tasklist for writing into desired filepath.
      *
      * @return Data formatted for writing.
      */

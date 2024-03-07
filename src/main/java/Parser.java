@@ -3,20 +3,18 @@ import tasks.Task;
 import exceptions.WallybotException;
 import exceptions.InvalidCommandException;
 
-import java.util.Scanner;
-
 
 /**
  * Makes sense of the user's input.
  */
 public class Parser {
     /**
-     * Constructor for Parser.
+     * Constructs Parser.
      */
     public Parser() {}
 
     /**
-     * Execute given command.
+     * Executes given command.
      *
      * @param command Command word.
      * @param input Command details.
@@ -54,9 +52,7 @@ public class Parser {
 
         case "bye":
             // Exit chatbot
-//            Wallybot.exitWally();
             return false;
-//            break;
 
         default:
             // Invalid command
@@ -67,7 +63,7 @@ public class Parser {
     }
 
     /**
-     * Create subclass Todo/Deadline/Event of Task
+     * Creates subclass Todo/Deadline/Event of Task
      *
      * @throws WallybotException Exception thrown depending on error.
      */

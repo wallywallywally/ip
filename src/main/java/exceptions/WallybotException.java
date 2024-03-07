@@ -1,18 +1,18 @@
 package exceptions;
 
 /**
- * Abstract superclass for Wallybot exceptions.
+ * Represents abstract superclass for Wallybot-specific exceptions.
  */
 public abstract class WallybotException extends Exception {
     protected String message;
 
     /**
-     * Constructor for WallybotException.
+     * Constructs WallybotException.
      */
     public WallybotException() {}
 
     /**
-     * Return error message.
+     * Returns error message.
      */
     public String getMessage() {
         return message;

@@ -2,12 +2,12 @@ package tasks;
 
 
 /**
- * Normal task.
+ * Represents a normal task.
  */
 public class Todo extends Task {
     // METHODS
     /**
-     * Constructor for Todo.
+     * Constructs Todo.
      */
     public Todo (String description) {
         super(description);
